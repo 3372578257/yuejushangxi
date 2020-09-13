@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>jQuery在线问卷答题系统代码 - 站长素材</title>
+
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<style type="text/css">
+.demo{width:760px; margin:60px auto 10px auto}
+</style>
+
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="quiz.js"></script>
+<script type="text/javascript">
+var init={'questions':[{'question':'越剧是我国第几大剧种？','answers':['2','3','1','4'],'correctAnswer':1},{'question':'越剧在清末起源于哪里？','answers':['浙江杭州','上海','浙江绍兴','浙江嘉兴'],'correctAnswer':3},{'question':'哪个是越剧经典剧目？','answers':['《长坂坡》','《天仙配》','《梁祝》','《牡丹亭》'],'correctAnswer':3},{'question':'在越剧历史上最先出现的形式是？','answers':['绍兴文戏','落地唱书','女子越剧-','小歌班'],'correctAnswer':2}]};
+
+$(function(){
+	$('#quiz-container').jquizzy({
+        questions: init.questions
+    });
+});
+</script>
+</head>
+
+<body>
+
+<div class="demo">
+	<div id='quiz-container'></div>
+</div>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>游戏结束<a href="1.html">返回首页</a></p>
+</div>
+</body>
+</html>

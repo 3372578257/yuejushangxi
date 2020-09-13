@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>趣味游戏</title>
+	<style>
+		#main{
+			width: 500px;
+			height: 500px;
+			margin: 0 auto;
+		}
+		ul{
+			width: 450px;
+			height: 450px;
+			float: left;
+			margin: 5px;
+			padding: 0px;
+			list-style-type: none;
+			background-color: blanchedalmond;
+		}
+		li {
+			float: left;
+		}
+		#success {
+			display: none;
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="main">
+		<ul id="begin">
+			<li ondrop="drop(event)" ondragover="dropOver(event)">
+				<img src="images/pic_source_02.jpg" alt="" width="150px" height="150px" draggable="true" id="drag1" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+			</li>
+			<li ondrop="drop(event)" ondragover="dropOver(event)">
+				<img src="images/pic_source_05.jpg" alt="" width="150px" height="150px" draggable="true" id="drag2" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+			</li>
+			<li ondrop="drop(event)" ondragover="dropOver(event)">
+				<img src="images/pic_source_09.jpg" alt="" width="150px" height="150px" draggable="true" id="drag3" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+			</li>
+			<li ondrop="drop(event)" ondragover="dropOver(event)">
+				<img src="images/pic_source_01.jpg" alt="" width="150px" height="150px" draggable="true" id="drag4" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+			</li>
+			<li ondrop="drop(event)" ondragover="dropOver(event)">
+				<img src="images/pic_source_06.jpg" alt="" width="150px" height="150px" draggable="true" id="drag5" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+			</li>
+			<li ondrop="drop(event)" ondragover="dropOver(event)">
+				<img src="images/pic_source_03.jpg" alt="" width="150px" height="150px" draggable="true" id="drag6" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+			</li>
+			<li ondrop="drop(event)" ondragover="dropOver(event)">
+				<img src="images/pic_source_08.jpg" alt="" width="150px" height="150px" draggable="true" id="drag7" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+			</li>
+			<li ondrop="drop(event)" ondragover="dropOver(event)">
+				<img src="images/pic_source_04.jpg" alt="" width="150px" height="150px" draggable="true" id="drag8" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+			</li>
+			<li ondrop="drop(event)" ondragover="dropOver(event)">
+				<img src="images/pic_source_07.jpg" alt="" width="150px" height="150px" draggable="true" id="drag9" ondragstart="dragStart(event)" ondragend="dragEnd(event)">
+			</li>
+		</ul>
+	</div>
+	<p id="success">恭喜您 拼图成功！</p>
+	<script>
+		var start_index;
+		var end_index;
+		function dragStart(event) {
+			console.log("dragStart: " + event.target.id);
+			start_index = event.target.id;
+		}
+		function dragEnd(event) {
+			event.preventDefault();
+		}
+		function dropOver(event) {
+			event.preventDefault();
+		}
+		function drop(event) {
+			event.preventDefault();
+			console.log("drop: "+event.target.id);
+			end_index = event.target.id;
+			exchange(start_index, end_index, "src");
+			check();
+		}
+		// 交换id1和id2两个元素的attri属性值
+		function exchange(id1, id2, attri){
+			ele1 = document.getElementById(id1);
+			ele2 = document.getElementById(id2);
+			var tmp_attri = ele1.getAttribute(attri);
+			ele1.setAttribute(attri, ele2.getAttribute(attri));
+			ele2.setAttribute(attri, tmp_attri);			
+		}
+		function check(){
+			var img_list = document.getElementsByTagName("img");
+			var img_src,dot_index,img_index;
+			for(var i=0; i<9; i++){
+				img_src = img_list[i].getAttribute("src");
+				dot_index = img_src.lastIndexOf(".");
+				img_index = Number(img_src.slice(dot_index - 2, dot_index));
+				if (img_index != i+1) return false;
+			}
+			var success = document.getElementById("success");
+			success.style.display = "block";
+		}
+	</script>
+	<p><a href="index.html">返回首页</a></p>
+</body>
+</html>
